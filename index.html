@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Counter by kirkuk1408</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Counter</h1>
+        <p class="header"></p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/kirkuk1408/counter/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/kirkuk1408/counter/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/kirkuk1408/counter">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/kirkuk1408">kirkuk1408</a></p>
+
+
+      </header>
+      <section>
+        <p>&lt;!doctype html&gt;
+
+</p>
+  Simple Tutorial - XivelyJS
+    body {
+      padding: 0;
+      margin: 2em;
+      color: #222;
+      text-shadow: 0 1px 0 white;
+      background-color: #ebebeb;
+      font-family: &amp;quot;Helvetica Neue&amp;quot;, helvetica, arial, sans-serif;
+      font-size: 1.2em;
+    }
+  <h1>
+<a name="xivelyjs-tutorial" class="anchor" href="#xivelyjs-tutorial"><span class="octicon octicon-link"></span></a>XivelyJS Tutorial</h1>
+
+<p></p><h2>
+<a name="live-datastream-value-" class="anchor" href="#live-datastream-value-"><span class="octicon octicon-link"></span></a>Live datastream value </h2>
+
+<p><a href="/xively-js/tutorial/">← Back to Tutorial</a></p>
+
+<p>&lt;!-- Include jQuery --&gt;
+  
+  &lt;!-- Include XivelyJS --&gt;
+  
+  &lt;!-- Our Script (should be included in a separate file, only inline for demo purposes) --&gt;
+  </p>
+
+<pre><code>// Make sure the document is ready to be handled
+$(document).ready(function($) {
+
+  // Set the Xively API key (https://xively.com/users/YOUR_USERNAME/keys)
+  xively.setKey( "yWYxyi3HpdqFCBtKHueTvOGoGROSAKxGRFAyQWk5d3JNdz0g" );
+
+  // Replace with your own values
+  var feedID        = 61916,          // Feed ID (the last number on the URL on the feed page on Xively)
+      datastreamID  = "sine60";       // Datastream ID
+      selector      = "#myelement";   // Your element on the page - takes any valid jQuery selector
+
+  // Get datastream data from Xively
+  xively.datastream.get (feedID, datastreamID, function ( datastream ) {
+    // WARNING: This code is only executed when we get a response back from Xively, it will likely execute after the rest your script
+    // NOTE: The variable "datastream" will contain all the Datastream information as an object. The structure of Datastream objects can be found at: 
+    // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+
+    // Display the current value from the datastream
+    $(selector).html( datastream["current_value"] );
+
+    // Getting realtime! The function associated with the subscribe method will be executed every time there is an update to the datastream
+    xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) {
+      // Display the current value from the updated datastream
+      $(selector).html( datastream_updated["current_value"] );
+    });
+
+  });
+
+  // WARNING: Code here will continue executing while we get the datastream data from Xively, use the function associated with datastream.get to work with the data, when the request is complete
+});
+</code></pre>
+
+<p>
+
+&lt;/html</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
